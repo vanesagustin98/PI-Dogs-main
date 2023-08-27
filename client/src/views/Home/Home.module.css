@@ -1,0 +1,61 @@
+.homeContainer {
+    padding: 20px;
+}
+
+.header {
+    font-size: 100px;
+    width: 7.5%;
+    margin: 0 auto; 
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px; 
+    background: linear-gradient(45deg, #ffcc00, #007bff, #ff0000);
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border: 2px solid #333;
+    display: inline-block; 
+}
+.selectRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.selectContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+.selectDropdown {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+}
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.paginationButton {
+    padding: 8px 12px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.paginationButton:hover {
+    background-color: #777;
+}

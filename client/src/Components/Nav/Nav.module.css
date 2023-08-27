@@ -1,0 +1,40 @@
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+
+.navSectionLeft {
+    display: flex;
+    align-items: center;
+}
+
+.navSectionCenter {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.navSectionRight {
+    display: flex;
+    align-items: center;
+}
+
+.navButton {
+    padding: 8px 16px;
+    margin: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navButton:hover {
+    background-color: #777;
+}

@@ -1,0 +1,9 @@
+.divCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.divCards > * {
+    margin: 10px;
+}

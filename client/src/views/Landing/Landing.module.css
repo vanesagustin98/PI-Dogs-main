@@ -1,0 +1,54 @@
+/* Landing.module.css */
+.divLanding {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.divConDegradado {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgb(94, 94, 3), rgb(6, 6, 109), rgb(71, 4, 4));
+}
+
+.imgPerro {
+    position: fixed;
+    z-index: 1;
+}
+
+.divLandingContent {
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.h1Landing {
+    font-size: 100px;
+    margin-bottom: 100%;
+}
+
+.buttonLanding {
+    font-size: 80px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    background-color: transparent;
+    margin-bottom: 50%;
+    border-radius: 20px;
+    background-color: rgb(187, 162, 19);
+    cursor: pointer;
+}
+
+.buttonLanding:hover {
+    transform: rotate(360deg);
+}

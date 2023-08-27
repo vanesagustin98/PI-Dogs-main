@@ -1,0 +1,55 @@
+a {
+    text-decoration: none;
+}
+.divCard {
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 500px;
+    height: 600px;
+}
+
+.yellowBackground {
+    background-color: rgb(40, 40, 0);
+}
+
+.blueBackground {
+    background-color: rgb(0, 0, 40);
+}
+
+.redBackground {
+    background-color: rgb(40, 0, 0);
+}
+
+.divCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.h2CardName {
+    font-size: 25px;
+    margin: 10px 0;
+    color: #ffffff;
+}
+.h2Card {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #ffffff;
+}
+
+.imgCard {
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 480px;
+    height: 400px;
+}
+
+
+.divCard:hover .imgCard {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}

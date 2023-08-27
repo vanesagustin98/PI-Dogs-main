@@ -1,0 +1,20 @@
+.selectContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+.selectLabel {
+    font-size: 16px;
+    color: #444;
+}
+
+.selectDropdown {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+}

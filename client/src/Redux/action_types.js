@@ -1,0 +1,7 @@
+export const POST_DOG = 'POST_DOG'
+export const FIND_DOG = 'FIND_DOG'
+export const ALL_DOGS = 'ALL_DOGS'
+export const DEATIL_DOG = 'DEATIL_DOG'
+export const TEMPERAMENTS = 'TEMPERAMENTS'
+export const FILTER = 'FILTER'
+export const ORDER = 'ORDER'
