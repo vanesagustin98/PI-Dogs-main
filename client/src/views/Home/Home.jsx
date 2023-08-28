@@ -22,12 +22,9 @@ const Home = () => {
         dispatch(order(event.target.value))
     }
 
-    function handleFilterTemperament(event) {
+    function handleFilter(event) {
         dispatch(filter(event.target.value))
-    }
-
-    function handleFilterOrigin(event) {
-        dispatch(filter(event.target.value))
+        setCurrentPage(1)
     }
 
     function handlePrevPage() {
@@ -39,43 +36,51 @@ const Home = () => {
     }
     return (
         <div className={styles.homeContainer}>
-            <h1 className={styles.header}>DOGS</h1>
-            <div className={styles.selectRow}>
+            <div className={styles.containerHeader}>
+                <h1 className={styles.header}>DOGS</h1>
+            </div>
 
-                <div className={styles.selectContainer}>
-                    <select className={styles.selectDropdown} onChange={handleOrder} defaultValue="">
-                        <option key={''} selected disabled value="">Alphabetical</option>
-                        <option key={'AA'} value="AA">Ascendente</option>
-                        <option key={'DA'} value="DA">Descendente</option>
-                    </select>
+            <div className={styles.container}>
+                <div className={styles.orders}>
+                    <h2>Orders</h2>
+                    <div className={styles.selectRow}>
+                        <select className={styles.selectDropdown} onChange={handleOrder} defaultValue="">
+                            <option disabled value="">Alphabetical</option>
+                            <option value="AA">Upward</option>
+                            <option value="DA">Falling</option>
+                        </select>
+                        <select className={styles.selectDropdown} onChange={handleOrder} defaultValue="">
+                            <option disabled value="">Weight</option>
+                            <option value="AP">Upward</option>
+                            <option value="DP">Falling</option>
+                        </select>
+                    </div>
                 </div>
-                <div className={styles.selectContainer}>
-                    <select className={styles.selectDropdown} onChange={handleOrder} defaultValue="">
-                        <option key={''} selected disabled value="">Weight</option>
-                        <option key={'AP'} value="AP">Ascendente</option>
-                        <option key={'DP'} value="DP">Descendente</option>
-                    </select>
+                <div className={styles.orders}>
+                    <h2>Filters</h2>
+                    <div className={styles.selectRow}>
+                        <SelectTemperament onChange={handleFilter} />
+                        <select className={styles.selectDropdown} onChange={handleFilter} defaultValue="">
+                            <option disabled value="">Origin</option>
+                            <option value="all">All</option>
+                            <option value="API">Api</option>
+                            <option value="DB">Database</option>
+                        </select>
+                    </div>
                 </div>
-                <SelectTemperament onChange={handleFilterTemperament} />
-                <div className={styles.selectContainer}>
-                    <select className={styles.selectDropdown} onChange={handleFilterOrigin}>
-                        <option key={''} selected disabled value="">Origin</option>
-                        <option key={'all'} value="all">Todos</option>
-                        <option key={'API'} value="API">Api</option>
-                        <option key={'DB'} value="DB">Base de datos</option>
-                    </select>
-                </div>
-
             </div>
             <CardsContainer currentPage={currentPage} dogsPerPage={dogsPerPage} dogs={dogs} />
             <div className={styles.buttonsContainer}>
-                <button className={styles.paginationButton} onClick={handlePrevPage} disabled={currentPage === 1}>
-                    Página anterior
+                <button
+                    className={styles.paginationButton}
+                    onClick={handlePrevPage}
+                    disabled={currentPage === 1}
+                >Previous
                 </button>
-                {pageNumbers.map((number) => (
+                {pageNumbers.map(number => (
                     <button
                         key={number}
-                        className={styles.paginationButton}
+                        className={`${styles.paginationButton} ${currentPage === number ? styles.currentPageButton : ''}`}
                         onClick={() => setCurrentPage(number)}
                     >
                         {number}
@@ -85,8 +90,7 @@ const Home = () => {
                     className={styles.paginationButton}
                     onClick={handleNextPage}
                     disabled={currentPage * dogsPerPage >= dogs.length}
-                >
-                    Página siguiente
+                >Next
                 </button>
             </div>
         </div>

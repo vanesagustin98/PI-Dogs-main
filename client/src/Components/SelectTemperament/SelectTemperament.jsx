@@ -14,8 +14,8 @@ const SelectTemperament = ({ name, onChange }) => {
     return (
         <div className={styles.selectContainer}>
             <select className={styles.selectDropdown} name={name} onChange={onChange} defaultValue="">
-                <option key={''} selected disabled value="">Temperaments</option>
-                <option key={'all'} value="all">All</option>
+                <option disabled value="">Temperaments</option>
+                <option value="all">All</option>
                 {temperaments.map(temperament => (
                     <option key={temperament.id} value={temperament.name}> {temperament.name} </option>
                     ))
