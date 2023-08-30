@@ -1,13 +1,12 @@
 import CardsContainer from "../../Components/CardsContainer/CardsContainer"
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect, useState } from "react"
-import { allDogs, filter, order } from "../../Redux/actions"
+import { useEffect, } from "react"
+import { allDogs, filter, order, prevPage, nextPage, setCurrentPage } from "../../Redux/actions"
 import SelectTemperament from "../../Components/SelectTemperament/SelectTemperament"
 import styles from './Home.module.css';
 
 const Home = () => {
     const dogs = useSelector(state => state.myDogs);
-    const [currentPage, setCurrentPage] = useState(1);
     const dogsPerPage = 9;
     const totalPages = Math.ceil(dogs.length / dogsPerPage);
     const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
@@ -19,21 +18,24 @@ const Home = () => {
     }, [dispatch])
 
     function handleOrder(event) {
-        dispatch(order(event.target.value))
+        dispatch(order(event.target.value));
+        dispatch(setCurrentPage(1));
     }
 
     function handleFilter(event) {
-        dispatch(filter(event.target.value))
-        setCurrentPage(1)
+        dispatch(filter(event.target.value));
+        dispatch(setCurrentPage(1));
     }
 
     function handlePrevPage() {
-        setCurrentPage(currentPage - 1);
+        dispatch(prevPage());
     }
 
     function handleNextPage() {
-        setCurrentPage(currentPage + 1);
+        dispatch(nextPage());
     }
+
+    const currentPage = useSelector(state => state.currentPage);
     return (
         <div className={styles.homeContainer}>
             <div className={styles.containerHeader}>
@@ -81,7 +83,7 @@ const Home = () => {
                     <button
                         key={number}
                         className={`${styles.paginationButton} ${currentPage === number ? styles.currentPageButton : ''}`}
-                        onClick={() => setCurrentPage(number)}
+                        onClick={() => dispatch(setCurrentPage(number))}
                     >
                         {number}
                     </button>

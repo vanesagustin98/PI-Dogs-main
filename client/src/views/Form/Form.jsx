@@ -13,7 +13,6 @@ const Form = () => {
     const [selectedTemperaments, setSelectedTemperaments] = useState([]);
     const [dogInput, setDogInput] = useState({});
 
-
     function handleSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -31,7 +30,7 @@ const Form = () => {
             life_span: `${dog.ageMin} - ${dog.ageMax}`,
             name: dog.name,
             image: dog.image,
-            temperament: selectedTemperaments.join(', ')
+            temperament: selectedTemperaments
         };
 
         dispatch(postDog(newDogInput));
@@ -61,6 +60,7 @@ const Form = () => {
         const { name, value } = event.target;
         setDogInput(prevDogInput => ({ ...prevDogInput, [name]: value }));
         const updatedDogInput = { ...dogInput, [name]: value };
+        console.log(updatedDogInput);
         const validationErrors = validate(updatedDogInput);
         if (Object.keys(validationErrors).length > 0) {
             setErrors(prevErrors => ({ ...prevErrors, [name]: validationErrors[name] }));
@@ -73,7 +73,6 @@ const Form = () => {
     function handleAddTemperament(event) {
         event.preventDefault();
         const temp = temperaments.temperament
-
         if (temp === '') {
             return;
         }

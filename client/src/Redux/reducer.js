@@ -1,16 +1,32 @@
-import { POST_DOG, FIND_DOG, DEATIL_DOG, FILTER, ORDER, ALL_DOGS, TEMPERAMENTS } from "./action_types";
+import { POST_DOG, FIND_DOG, DEATIL_DOG, FILTER, ORDER, ALL_DOGS, TEMPERAMENTS, NEXT_PAGE, PREV_PAGE, SET_CURRENT_PAGE } from "./action_types";
 
 const initialState = {
     myDogs: [],
     dogDetail: [],
     allDogs: [],
-    temperaments: []
+    temperaments: [],
+    currentPage: 1
 }
 
 const avg = (dog) => {
-    const [min, max] = dog.weight.split(' - ').map(Number);
-    return (min + max) / 2;
-}
+    let numbersArray = [];
+    let promedio;
+    if (typeof dog.weight === 'string') {
+        const extractedNumbers = dog.weight.match(/\d+/g);
+        if (extractedNumbers) {
+            numbersArray = extractedNumbers.map(Number);
+            const sum = numbersArray.reduce((acc, num) => acc + num, 0);
+            promedio = numbersArray.length > 0 ? sum / numbersArray.length : 0;
+        } else {
+            promedio = 101;
+        }
+    } else if (typeof dog.weight === 'number' && !isNaN(dog.weight)) {
+        promedio = dog.weight;
+    }
+    return promedio;
+};
+
+
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -24,32 +40,26 @@ const reducer = (state = initialState, action) => {
             return { ...state, myDogs: action.payload, allDogs: action.payload };
 
         case POST_DOG:
-            return { ...state};
+            return { ...state };
 
         case TEMPERAMENTS:
             return { ...state, temperaments: action.payload };
 
         case FILTER:
+            let filteredDogs
+
             if (action.payload === 'DB' || action.payload === 'API') {
-                const copyFilter = [...state.allDogs].filter((dog) => dog.origin === action.payload);
-                const filterCharacter = action.payload === 'all' ? state.allDogs : copyFilter;
-                return {
-                    ...state,
-                    myDogs: filterCharacter,
-                };
+                filteredDogs = action.payload === 'all' ? state.allDogs : state.allDogs.filter(dog => dog.origin === action.payload);
+            } else {
+                filteredDogs = action.payload === 'all' ? state.allDogs : state.allDogs.filter(dog =>
+                    dog.temperament && dog.temperament.includes(action.payload)
+                );
             }
 
-            const copyFilter = [...state.allDogs].filter((dog) =>
-                dog.temperament ? dog.temperament.includes(action.payload) : null
-            );
-            const filterCharacter = action.payload === 'all' ? state.allDogs : copyFilter;
             return {
                 ...state,
-                myDogs: filterCharacter,
+                myDogs: filteredDogs,
             };
-
-
-
 
         case ORDER:
             let sorter
@@ -68,6 +78,25 @@ const reducer = (state = initialState, action) => {
             const copyOrder = [...state.myDogs].sort(sorter)
 
             return { ...state, myDogs: copyOrder }
+
+
+        case NEXT_PAGE:
+            return {
+                ...state,
+                currentPage: state.currentPage + 1,
+            };
+
+        case PREV_PAGE:
+            return {
+                ...state,
+                currentPage: state.currentPage - 1,
+            };
+
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.payload,
+            };
 
         default:
             return state

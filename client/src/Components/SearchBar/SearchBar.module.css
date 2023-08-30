@@ -1,10 +1,12 @@
 .searchBarContainer {
     margin-top: 10px;
+    position: absolute;
+    right: 40.5%;
 }
 
 .searchInput {
     padding: 8px;
-    width: 200%;
+    width: 350px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;

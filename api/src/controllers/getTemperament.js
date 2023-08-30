@@ -2,15 +2,16 @@ const axios = require('axios');
 const { Temperament } = require('../db.js');
 require('dotenv').config();
 const { API_KEY, API } = process.env;
-async function getTemperament(req,res) {
+
+async function getTemperament(req, res) {
     try {
-        const result = await axios.get(`${API}`, {
+        const { data } = await axios.get(`${API}`, {
             headers: {
                 'x-api-key': API_KEY
             }
         });
         const temperaments = [];
-        await result.data.map(dog => {
+        await data.map(dog => {
             if (dog.temperament) {
                 dog.temperament.split(', ').forEach(temp => {
                     if (!temperaments.includes(temp)) {
@@ -19,7 +20,13 @@ async function getTemperament(req,res) {
                 });
             }
         });
-        const temperamentsDB = await Temperament.bulkCreate(temperaments.map(temp => ({ name: temp })))
+        const temperamentsDB = await Promise.all(temperaments.map(async temp => {
+            const [temperament, created] = await Temperament.findOrCreate({
+                where: { name: temp },
+                defaults: { name: temp }
+            });
+            return temperament;
+        }));
         res.status(200).json(temperamentsDB);
     } catch (error) {
         res.status(500).send({ message: error.message });

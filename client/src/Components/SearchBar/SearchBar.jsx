@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { findDog } from '../../Redux/actions';
+import { findDog, setCurrentPage } from '../../Redux/actions';
 import styles from './SearchBar.module.css';
 
 export default function SearchBar() {
@@ -10,6 +10,7 @@ export default function SearchBar() {
     function handleChange(event) {
         setDog(event.target.value);
         dispatch(findDog(event.target.value))
+        dispatch(setCurrentPage(1));
     }
     return (
         <div className={styles.searchBarContainer}>

@@ -1,4 +1,4 @@
-import { POST_DOG, FIND_DOG, DEATIL_DOG, FILTER, ORDER, ALL_DOGS, TEMPERAMENTS } from "./action_types";
+import { POST_DOG, FIND_DOG, DEATIL_DOG, FILTER, ORDER, ALL_DOGS, TEMPERAMENTS, NEXT_PAGE, PREV_PAGE, SET_CURRENT_PAGE } from "./action_types";
 import axios from 'axios'
 
 export const allDogs = () => {
@@ -85,8 +85,6 @@ export const allTemperaments = () => {
     };
 };
 
-
-
 export const filter = (obj) => {
     return {
         type: FILTER,
@@ -100,3 +98,16 @@ export const order = (id) => {
         payload: id
     }
 }
+
+export const nextPage = () => ({
+    type: NEXT_PAGE,
+});
+
+export const prevPage = () => ({
+    type: PREV_PAGE,
+});
+
+export const setCurrentPage = (page) => ({
+    type: SET_CURRENT_PAGE,
+    payload: page,
+});

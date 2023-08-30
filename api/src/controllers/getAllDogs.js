@@ -1,7 +1,7 @@
 const axios = require("axios");
 require('dotenv').config();
 const { API_KEY, API, URL_IMAGE } = process.env;
-const { Dog } = require('../db.js');
+const { Dog, Temperament } = require('../db.js');
 
 async function getAllDogs() {
     try {
@@ -28,7 +28,19 @@ async function getAllDogs() {
             
         })
         
-        const dbDogs = await Dog.findAll();
+        const dbDogs = await Dog.findAll({
+            include:[{
+                model: Temperament,
+                attributes: [ "name"],
+                through:{
+                    attributes: [],
+                }
+            }]
+        }).then(dogs => dogs.map(dog => ({
+            ...dog.dataValues,
+            temperament: dog.temperaments.map(temp => temp.name).join(', ')
+        })));
+        
         const dogs = [...apiDogs, ...dbDogs];
 
         return dogs;

@@ -17,9 +17,11 @@ function Card(props) {
     return (
         <Link to={`/detail/${id}`}>
             <div className={cardStyle}>
-                <h2 className={styles.h2CardName}>{name}</h2>
-                <h2 className={styles.h2Card}>{weight} kg</h2>
-                <h2 className={styles.h2Card}>{temperament}</h2>
+                <div className={styles.containerH2}>
+                    <h2 className={styles.h2CardName}>{name}</h2>
+                    <h2 className={styles.h2Card}>{weight} kg</h2>
+                    <h2 className={styles.h2Card}>{temperament}</h2>
+                </div>
                 <div className={styles.imgContainer}>
                     <img
                         className={styles.imgCard}

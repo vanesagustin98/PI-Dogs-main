@@ -1,15 +1,24 @@
 .homeContainer {
     padding: 20px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
 }
 
 .containerHeader {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    height: 200px;
 }
 
 .header {
+    position: absolute;
+    right: 50%;
     font-size: 100px;
+    margin-right: 155px;
     width: 155px;
     margin: 0 auto 20px;
     max-width: 100%;
@@ -31,7 +40,7 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
-    margin: 0 10px; 
+    margin: 0 10px 20px 10px; 
     display: flex;
     flex-direction: column;
     align-items: center;

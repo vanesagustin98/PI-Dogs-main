@@ -11,7 +11,7 @@ const Detail = () => {
         dispatch(detailDog(id))
     }, [dispatch, id])
     const dog = useSelector(state => state.dogDetail)
-
+    console.log(dog.temperaments)
     const backgroundStyle = {
         backgroundImage: `url(${dog.image})`,
         backgroundSize: 'cover',
@@ -43,6 +43,7 @@ const Detail = () => {
                         <br />
                         <div className={styles.divider}>&nbsp;</div>
                         <div className={styles.right}>
+                            <br />
                             <h3>{dog.id}</h3>
                             <h3>{dog.name}</h3>
                             <h3>{dog.weight} kg</h3>
